@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "CustomLinqExtension/1.0.0": {
+        "runtime": {
+          "CustomLinqExtension.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CustomLinqExtension/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

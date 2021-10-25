@@ -1,0 +1,16 @@
+C:\Users\User\source\repos\CustomLinqExtension\obj\Debug\net5.0\CustomLinqExtension.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\CustomLinqExtension\obj\Debug\net5.0\CustomLinqExtension.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\CustomLinqExtension\obj\Debug\net5.0\CustomLinqExtension.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\CustomLinqExtension\obj\Debug\net5.0\CustomLinqExtension.AssemblyInfo.cs
+C:\Users\User\source\repos\CustomLinqExtension\obj\Debug\net5.0\CustomLinqExtension.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\CustomLinqExtension\bin\Debug\net5.0\CustomLinqExtension.exe
+C:\Users\User\source\repos\CustomLinqExtension\bin\Debug\net5.0\CustomLinqExtension.deps.json
+C:\Users\User\source\repos\CustomLinqExtension\bin\Debug\net5.0\CustomLinqExtension.runtimeconfig.json
+C:\Users\User\source\repos\CustomLinqExtension\bin\Debug\net5.0\CustomLinqExtension.runtimeconfig.dev.json
+C:\Users\User\source\repos\CustomLinqExtension\bin\Debug\net5.0\CustomLinqExtension.dll
+C:\Users\User\source\repos\CustomLinqExtension\bin\Debug\net5.0\ref\CustomLinqExtension.dll
+C:\Users\User\source\repos\CustomLinqExtension\bin\Debug\net5.0\CustomLinqExtension.pdb
+C:\Users\User\source\repos\CustomLinqExtension\obj\Debug\net5.0\CustomLinqExtension.dll
+C:\Users\User\source\repos\CustomLinqExtension\obj\Debug\net5.0\ref\CustomLinqExtension.dll
+C:\Users\User\source\repos\CustomLinqExtension\obj\Debug\net5.0\CustomLinqExtension.pdb
+C:\Users\User\source\repos\CustomLinqExtension\obj\Debug\net5.0\CustomLinqExtension.genruntimeconfig.cache
