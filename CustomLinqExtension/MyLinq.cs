@@ -31,13 +31,23 @@ namespace CustomLinq
 
         public static IEnumerable<IGrouping<TKey,TSource>> GroupByExt<TSource,TKey>(this IEnumerable<TSource> source, Func<TSource,TKey> keySelector)
         {
-            var result = new Dictionary<TKey, TSource>();
+            var result = new Dictionary<TKey, List<TSource>>();
             foreach (TSource item in source)
             {
-                result.TryAdd(keySelector(item), item);
+                if (result.ContainsKey(keySelector(item)) == false)
+                {
+                    result.Add(keySelector(item), new List<TSource>());
+                }
             }
-            return result.Values as IEnumerable<IGrouping<TKey,TSource>>;
+
+            foreach (var item in source)
+            {
+                result[keySelector(item)].Add(item);
+            }
+
+            return result as IEnumerable<IGrouping<TKey, TSource>>;
         }
+
 
         public static List<TSource> ToListExt<TSource>(this IEnumerable<TSource> source)
         {
