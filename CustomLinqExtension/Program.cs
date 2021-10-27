@@ -39,27 +39,31 @@ namespace CustomLinqExtensionExample
             }
             Console.WriteLine();
 
-            //var orderedByPopulation = PopulationByCountry.OrderByExt(x => x.Population);
-            //foreach (var item in orderedByPopulation)
-            //{
-            //    Console.WriteLine(item.Name + " " + item);
-            //}
-            //Console.WriteLine();
+            var orderedByPopulation = PopulationByCountry.OrderByDescExt(x => x.Population);
+            foreach (var item in orderedByPopulation)
+            {
+                Console.WriteLine(item.Name + " " + item);
+            }
+            Console.WriteLine();
 
-            //PopulationByCountry.Add(China);
-            //PopulationByCountry.Add(China);
-            //PopulationByCountry.Add(China);
-            //PopulationByCountry.Add(Japan);
+            PopulationByCountry.Add(China);
+            PopulationByCountry.Add(China);
+            PopulationByCountry.Add(China);
+            PopulationByCountry.Add(Japan);
 
-            //var groupByCountry = PopulationByCountry.GroupByExt(x => x.Name);
-            //foreach (var item in groupByCountry)
-            //{
-            //    foreach (var miniitem in item.Value)
-            //    {
-            //        Console.Write(miniitem+" ");
-            //    }
-            //    Console.WriteLine();
-            //}
+            var groupByCountry = PopulationByCountry.GroupByExt(x => x.Name);
+            foreach (var item in groupByCountry)
+            {
+                Console.WriteLine(item.Key);
+                foreach (var piece in PopulationByCountry)
+                {
+                    if (piece.Name == item.Key)
+                    {
+                        Console.Write(piece + " ");
+                    }
+                    Console.WriteLine();
+                }
+            }
 
             Console.ReadLine();
             #endregion

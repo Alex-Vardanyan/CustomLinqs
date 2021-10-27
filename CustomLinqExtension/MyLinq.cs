@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -34,20 +35,47 @@ namespace CustomLinq
             var result = new Dictionary<TKey, List<TSource>>();
             foreach (TSource item in source)
             {
-                if (result.ContainsKey(keySelector(item)) == false)
+                var key = keySelector(item);
+                if (!result.ContainsKey(key))
                 {
-                    result.Add(keySelector(item), new List<TSource>());
+                    result.Add(key, new List<TSource> { item});
+                }
+                else
+                {
+                    result[key].Add(item);
                 }
             }
 
-            foreach (var item in source)
+            foreach (var item in result)
             {
-                result[keySelector(item)].Add(item);
-            }
+                yield return new Grouping<TKey, TSource>(item.Key, item.Value);
+            }            
 
-            return result as IEnumerable<IGrouping<TKey, TSource>>;
         }
 
+        class Grouping<TKey, TSource> : IGrouping<TKey, TSource>
+        {
+
+            private TKey _key;
+            private IEnumerable<TSource> _elements;
+            public TKey Key { get { return _key; }}
+
+            public Grouping(TKey tkey,IEnumerable<TSource> elements)
+            {
+                _key = tkey;
+                _elements = elements;
+            }
+
+            public IEnumerator<TSource> GetEnumerator()
+            {
+                return _elements.GetEnumerator();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return GetEnumerator();
+            }
+        }
 
         public static List<TSource> ToListExt<TSource>(this IEnumerable<TSource> source)
         {
@@ -64,10 +92,58 @@ namespace CustomLinq
             var result = new SortedList<TKey, TSource>();
             foreach(TSource item in source)
             {
-                result.TryAdd(keySelector(item), item);
+                result.Add(keySelector(item), item);
+                Console.WriteLine(keySelector(item));
             }
-            return result.Values as IOrderedEnumerable<TSource>;
+
+            return new OrderedEnum<TKey, TSource>(result.Values);
         }
+
+        public static IOrderedEnumerable<TSource> OrderByDescExt<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+        {
+            var result = new SortedList<TKey, TSource>();
+            foreach (TSource item in source)
+            {
+                result.Add(keySelector(item), item);
+                Console.WriteLine(keySelector(item));
+            }
+
+            var descResult = new List<TSource>();
+            for (int i = 0; i < result.Count; i++)
+            {
+                descResult.Add(result.Values[result.Count - i -1]);
+            }
+            return new OrderedEnum<TKey, TSource>(descResult);
+        }
+
+
+        class OrderedEnum<TKey,TSource> : IOrderedEnumerable<TSource>
+        {
+            private IEnumerable<TSource> _list;
+            public OrderedEnum(IEnumerable<TSource> source)
+            {
+                foreach (var item in source)
+                {
+                    _list = source;
+                }
+            }
+
+            public IOrderedEnumerable<TSource> CreateOrderedEnumerable<TKey>(Func<TSource, TKey> keySelector, IComparer<TKey> comparer, bool descending)
+            {
+                throw new NotImplementedException();
+            }
+
+            public IEnumerator<TSource> GetEnumerator()
+            {
+                return _list.GetEnumerator();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return GetEnumerator();
+            }
+        }
+
 
         public static Dictionary<TKey, TSource> ToDictionaryExt<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource,TKey> keySelector)
         {
