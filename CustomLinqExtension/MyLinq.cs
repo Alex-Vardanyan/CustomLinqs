@@ -122,10 +122,7 @@ namespace CustomLinq
             private IEnumerable<TSource> _list;
             public OrderedEnum(IEnumerable<TSource> source)
             {
-                foreach (var item in source)
-                {
                     _list = source;
-                }
             }
 
             public IOrderedEnumerable<TSource> CreateOrderedEnumerable<TKey>(Func<TSource, TKey> keySelector, IComparer<TKey> comparer, bool descending)
